@@ -1,0 +1,20 @@
+{
+  "name": "universal-valida",
+  "version": "1.0.0",
+  "description": "Validador universal NodeJs",
+  "homepage": "https://github.com/Eduardo2712/universal-valida#readme",
+  "bugs": {
+    "url": "https://github.com/Eduardo2712/universal-valida/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eduardo2712/universal-valida.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
