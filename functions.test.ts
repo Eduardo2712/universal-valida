@@ -62,40 +62,6 @@ describe("CNPJ validation", () => {
     });
 });
 
-describe("Date validation", () => {
-    test("should validate correct date (YYYY-MM-DD)", () => {
-        expect(validateDate("2020-02-29")).toBe(true);
-    });
-
-    test("should reject invalid date (YYYY-MM-DD)", () => {
-        expect(validateDate("2020-02-30")).toBe(false);
-    });
-
-    test("should validate correct date (DD/MM/YYYY)", () => {
-        expect(validateDate("29/02/2020", "DD/MM/YYYY")).toBe(true);
-    });
-
-    test("should reject invalid date (DD/MM/YYYY)", () => {
-        expect(validateDate("30/02/2020", "DD/MM/YYYY")).toBe(false);
-    });
-
-    test("should validate correct date (MM-DD-YYYY)", () => {
-        expect(validateDate("02-29-2020", "MM-DD-YYYY")).toBe(true);
-    });
-
-    test("should reject invalid date (MM-DD-YYYY)", () => {
-        expect(validateDate("02-30-2020", "MM-DD-YYYY")).toBe(false);
-    });
-
-    test("should reject malformed date", () => {
-        expect(validateDate("2020/02/29")).toBe(false);
-    });
-
-    test("should reject empty date", () => {
-        expect(validateDate("")).toBe(false);
-    });
-});
-
 describe("Birth date validation", () => {
     test("should validate correct birth date with min age", () => {
         expect(validateBirthDate("2000-01-01", 18)).toBe(true);
@@ -135,5 +101,97 @@ describe("Birth date validation", () => {
 
     test("should reject empty birth date", () => {
         expect(validateBirthDate("", 18)).toBe(false);
+    });
+});
+
+describe("Date validation", () => {
+    test("should validate correct date (YYYY-MM-DD)", () => {
+        expect(validateDate("2020-02-29")).toBe(true);
+    });
+
+    test("should reject invalid date (YYYY-MM-DD)", () => {
+        expect(validateDate("2020-02-30")).toBe(false);
+    });
+
+    test("should validate correct date (DD/MM/YYYY)", () => {
+        expect(validateDate("29/02/2020", "DD/MM/YYYY")).toBe(true);
+    });
+
+    test("should reject invalid date (DD/MM/YYYY)", () => {
+        expect(validateDate("30/02/2020", "DD/MM/YYYY")).toBe(false);
+    });
+
+    test("should validate correct date (MM-DD-YYYY)", () => {
+        expect(validateDate("02-29-2020", "MM-DD-YYYY")).toBe(true);
+    });
+
+    test("should reject invalid date (MM-DD-YYYY)", () => {
+        expect(validateDate("02-30-2020", "MM-DD-YYYY")).toBe(false);
+    });
+
+    test("should reject malformed date", () => {
+        expect(validateDate("2020/02/29")).toBe(false);
+    });
+
+    test("should reject empty date", () => {
+        expect(validateDate("")).toBe(false);
+    });
+});
+
+describe("CEP validation", () => {
+    test("should validate correct CEP", () => {
+        expect(validateCEP("12345-678")).toBe(true);
+    });
+
+    test("should reject invalid CEP", () => {
+        expect(validateCEP("1234-567")).toBe(false);
+    });
+
+    test("should reject empty CEP", () => {
+        expect(validateCEP("")).toBe(false);
+    });
+
+    test("should validate correct CEP without hyphen", () => {
+        expect(validateCEP("12345678")).toBe(true);
+    });
+});
+
+describe("Full name validation", () => {
+    test("should validate correct full name", () => {
+        expect(validateFullName("John Doe")).toBe(true);
+    });
+
+    test("should reject single name", () => {
+        expect(validateFullName("John")).toBe(false);
+    });
+
+    test("should reject empty full name", () => {
+        expect(validateFullName("")).toBe(false);
+    });
+
+    test("should reject full name with short parts", () => {
+        expect(validateFullName("J D")).toBe(false);
+    });
+
+    test("should validate full name with multiple parts", () => {
+        expect(validateFullName("John Michael Doe")).toBe(true);
+    });
+});
+
+describe("URL validation", () => {
+    test("should validate correct URL", () => {
+        expect(validateUrl("https://www.example.com")).toBe(true);
+    });
+
+    test("should reject invalid URL", () => {
+        expect(validateUrl("htp:/invalid-url")).toBe(false);
+    });
+
+    test("should reject URL with spaces", () => {
+        expect(validateUrl("https://www.exa mple.com")).toBe(false);
+    });
+
+    test("should reject empty URL", () => {
+        expect(validateUrl("")).toBe(false);
     });
 });

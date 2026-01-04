@@ -344,10 +344,38 @@ const isValidHost = (host: string): boolean => {
 };
 
 export const validateCEP = (cep: string): boolean => {
-    const digits = cep
-        .split("")
-        .filter((char) => char >= "0" && char <= "9")
-        .join("");
+    if (cep === null || cep === undefined) {
+        return false;
+    }
 
-    return digits.length === 8;
+    let cepString = String(cep);
+
+    let digits = "";
+
+    for (const char of cepString) {
+        const code = char.charCodeAt(0);
+
+        if (code >= 48 && code <= 57) {
+            digits += char;
+        }
+    }
+
+    if (digits.length !== 8) {
+        return false;
+    }
+
+    let allEqual = true;
+
+    for (let i = 1; i < digits.length; i++) {
+        if (digits[i] !== digits[0]) {
+            allEqual = false;
+            break;
+        }
+    }
+
+    if (allEqual) {
+        return false;
+    }
+
+    return true;
 };
